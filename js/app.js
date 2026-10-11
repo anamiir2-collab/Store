@@ -202,26 +202,10 @@ const App = (() => {
     return { el: c, close };
   }
 
-  /* ---------- Theme ---------- */
+  /* ---------- Fixed light theme ---------- */
   async function initTheme() {
-    const saved = await DB.getSettings();
-    state.settings = saved;
-    const theme = (await DB.getMeta('theme'))?.value || 'light';
-    document.documentElement.dataset.theme = theme;
-    updateThemeToggle(theme);
-  }
-  function updateThemeToggle(theme) {
-    document.documentElement.dataset.theme = theme;
-    const sun = $('.icon-sun'), moon = $('.icon-moon');
-    if (sun && moon) {
-      sun.style.display = theme === 'dark' ? 'none' : 'block';
-      moon.style.display = theme === 'dark' ? 'block' : 'none';
-    }
-  }
-  async function toggleTheme() {
-    const cur = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    await DB.setMeta('theme', cur);
-    updateThemeToggle(cur);
+    state.settings = await DB.getSettings();
+    document.documentElement.dataset.theme = 'light';
   }
 
   /* ---------- Navigation ---------- */
@@ -288,7 +272,6 @@ const App = (() => {
       $('#app').dataset.sidebarOpen = 'false';
       $('#sidebarOverlay').hidden = true;
     });
-    $('#themeToggle').addEventListener('click', toggleTheme);
 
     $$('.nav-item').forEach(a => {
       a.addEventListener('click', (e) => {
