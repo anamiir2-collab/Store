@@ -1238,3 +1238,11 @@ input[type=number] { -moz-appearance: textfield; }
 
 /* Focus accessibility */
 *:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+
+
+/* Keep hidden overlays hidden: author display rules must not override [hidden]. */
+.modal-root[hidden],
+.confirm-root[hidden],
+.sidebar-overlay[hidden] {
+  display: none !important;
+}
