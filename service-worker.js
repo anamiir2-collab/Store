@@ -3,7 +3,7 @@
    ========================================================================= */
 
 // Bump this version whenever app files change so mobile browsers discard stale JS/CSS.
-const CACHE_NAME = 'store-inventory-v2';
+const CACHE_NAME = 'store-inventory-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -23,6 +23,7 @@ const ASSETS = [
   './js/reports.js',
   './js/settings.js',
   './js/backup.js',
+  './js/demo-data.js',
   './manifest.json',
   './assets/icons/icon.svg',
   'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
