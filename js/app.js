@@ -326,7 +326,7 @@ const App = (() => {
   async function init() {
     try {
       await DB.open();
-      if (window.DemoData) {
+      if (typeof DemoData !== 'undefined') {
         try {
           const seeded = await DemoData.seedIfEmpty();
           if (seeded) console.info('تم تجهيز 100 منتج و50 فاتورة تجريبية لمحل البقالة.');
