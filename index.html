@@ -159,13 +159,20 @@
   <script src="./js/reports.js"></script>
   <script src="./js/settings.js"></script>
   <script src="./js/backup.js"></script>
+  <script src="./js/demo-data.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       if (window.__SHEETJS_FAILED__) {
         App.toast.warn('تعذّر تحميل مكتبة Excel (SheetJS). استيراد وتصدير Excel قد لا يعمل دون اتصال بالإنترنت.');
       }
       if (window.__CHARTJS_FAILED__) {
         App.toast.warn('تعذّر تحميل مكتبة الرسوم البيانية (Chart.js). قد لا تظهر الرسوم بيانية.');
+      }
+      try {
+        const seeded = await DemoData.seedIfEmpty();
+        if (seeded) console.info('تم تجهيز بيانات محل البقالة التجريبية: 100 منتج و50 فاتورة.');
+      } catch (err) {
+        console.error('تعذّر تجهيز البيانات التجريبية:', err);
       }
       App.init();
     });
