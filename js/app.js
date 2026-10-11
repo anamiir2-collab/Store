@@ -326,6 +326,14 @@ const App = (() => {
   async function init() {
     try {
       await DB.open();
+      if (window.DemoData) {
+        try {
+          const seeded = await DemoData.seedIfEmpty();
+          if (seeded) console.info('تم تجهيز 100 منتج و50 فاتورة تجريبية لمحل البقالة.');
+        } catch (seedError) {
+          console.error('Demo data seeding failed:', seedError);
+        }
+      }
       await initTheme();
       $('#brandStoreName').textContent = state.settings.storeName || 'متجري';
       initSidebar();
