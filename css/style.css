@@ -3,7 +3,7 @@
    Stylesheet — Cairo font, teal palette, RTL-first, dark mode, responsive
    ========================================================================= */
 
-/* ---------- Design Tokens — Light mode only ---------- */
+/* ---------- Design Tokens ---------- */
 :root {
   /* Brand — refined teal */
   --teal-50:  #f0fdfa;
@@ -57,6 +57,27 @@
 
   --font: 'Cairo', 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
   --font-mono: 'Cairo', 'Menlo', monospace;
+}
+
+[data-theme="dark"] {
+  --bg:             #0b1220;
+  --bg-elevated:    #131c2e;
+  --bg-subtle:      #1a2336;
+  --bg-hover:       #1e2a40;
+  --border:         #243049;
+  --border-strong:  #334155;
+  --text:           #e2e8f0;
+  --text-muted:     #94a3b8;
+  --text-subtle:    #64748b;
+
+  --primary:        var(--teal-500);
+  --primary-hover:  var(--teal-400);
+  --primary-light:  rgba(20,184,166,.12);
+  --primary-text:   #04211d;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow:    0 4px 12px rgba(0,0,0,.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,.5);
 }
 
 /* ---------- Reset ---------- */
@@ -399,12 +420,12 @@ svg { display: block; }
 .stat-icon.green  { background: #dcfce7;          color: var(--green-600); }
 .stat-icon.blue   { background: #dbeafe;          color: var(--blue-500); }
 .stat-icon.purple { background: #ede9fe;          color: var(--purple-500); }
-
-
-
-
-
-
+[data-theme="dark"] .stat-icon.teal   { background: rgba(20,184,166,.15); }
+[data-theme="dark"] .stat-icon.amber  { background: rgba(245,158,11,.15); }
+[data-theme="dark"] .stat-icon.red    { background: rgba(239,68,68,.15); }
+[data-theme="dark"] .stat-icon.green  { background: rgba(34,197,94,.15); }
+[data-theme="dark"] .stat-icon.blue   { background: rgba(59,130,246,.15); }
+[data-theme="dark"] .stat-icon.purple { background: rgba(139,92,246,.15); }
 .stat-body { flex: 1; min-width: 0; }
 .stat-label {
   font-size: 12px;
@@ -497,9 +518,10 @@ th.sort-desc::after { content: '↓'; opacity: 1; }
 .chip-danger  { background: #fee2e2; color: #991b1b; }
 .chip-info    { background: var(--teal-100); color: var(--teal-800); }
 .chip-neutral { background: var(--bg-subtle); color: var(--text-muted); }
-
-
-
+[data-theme="dark"] .chip-success { background: rgba(34,197,94,.18); color: #86efac; }
+[data-theme="dark"] .chip-warning { background: rgba(245,158,11,.18); color: #fcd34d; }
+[data-theme="dark"] .chip-danger  { background: rgba(239,68,68,.18); color: #fca5a5; }
+[data-theme="dark"] .chip-info    { background: rgba(20,184,166,.18); color: var(--teal-300); }
 
 /* ---------- Forms ---------- */
 .form-group { margin-bottom: 14px; }
@@ -739,7 +761,7 @@ input[type=radio].form-check {
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 12px;
 }
-
+[data-theme="dark"] .confirm-icon { background: rgba(239,68,68,.18); }
 .confirm-title {
   font-size: 17px;
   font-weight: 700;
@@ -979,9 +1001,9 @@ input[type=radio].form-check {
 .alert-item.danger  .alert-icon { background: #fee2e2; color: var(--red-600); }
 .alert-item.warning .alert-icon { background: #fef3c7; color: var(--amber-600); }
 .alert-item.info    .alert-icon { background: #dbeafe; color: var(--blue-500); }
-
-
-
+[data-theme="dark"] .alert-item.danger  .alert-icon { background: rgba(239,68,68,.18); }
+[data-theme="dark"] .alert-item.warning .alert-icon { background: rgba(245,158,11,.18); }
+[data-theme="dark"] .alert-item.info    .alert-icon { background: rgba(59,130,246,.18); }
 .alert-body { flex: 1; min-width: 0; }
 .alert-title { font-weight: 600; font-size: 14px; }
 .alert-desc  { font-size: 12px; color: var(--text-muted); }
