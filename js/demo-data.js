@@ -32,8 +32,12 @@ const DemoData = (() => {
   async function seedIfEmpty() {
     const settings = await DB.getSettings();
     if (settings.demoDataLoaded) return false;
-    const [productsNow, invoicesNow] = await Promise.all([DB.count("products"), DB.count("invoices")]);
-    if (productsNow || invoicesNow) return false;
+    // Do not overwrite user records. Demo rows use their own IDs and can coexist with real data.
+    const [existingProducts, existingInvoices] = await Promise.all([DB.getAll("products"), DB.getAll("invoices")]);
+    if (existingProducts.some(p => String(p.id).startsWith("demo-product-")) || existingInvoices.some(i => String(i.id).startsWith("demo-invoice-"))) {
+      await DB.saveSetting("demoDataLoaded", true);
+      return false;
+    }
 
     const suppliers = supplierNames.map((name,i)=>({id:uid("supplier",i+1),name,phone:"010"+String(10000000+i*13791).slice(0,8),address:"القاهرة - مصر",balance:0,totalPurchases:0,totalPaid:0,notes:"مورد تجريبي"}));
     const customers = customerNames.map((name,i)=>({id:uid("customer",i+1),name,phone:"011"+String(20000000+i*11371).slice(0,8),address:"القاهرة - مصر",balance:0,totalPurchases:0,totalPaid:0,notes:"عميل تجريبي"}));
